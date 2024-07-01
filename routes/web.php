@@ -7,6 +7,7 @@ use App\Http\Controllers\admin\JobOfferController;
 use App\Http\Controllers\Employeur\emJobOfferController;
 use App\Http\Controllers\Employeur\ApplicationController;
 use App\Http\Controllers\candidat\CandidatController;
+use App\Models\JobOffer;
 
 
 /*
@@ -21,7 +22,8 @@ use App\Http\Controllers\candidat\CandidatController;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    $jobOffers = JobOffer::all(); // Fetch job offers
+    return view('welcome', compact('jobOffers')); // Pass job offers to the welcome view
 });
 // header
 Route::middleware(['auth'])->group(function () {
